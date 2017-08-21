@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Favourite Places</string>
+    <string name="location_service_fragment_fetching_location">Please wait, application fetching current location</string>
+    <string name="main_activity_save_actual_location">Save actual location</string>
+    <string name="main_activity_view_saved_places">View saved places</string>
+    <string name="place_list_item_longitude">longitude:</string>
+    <string name="place_list_item_latitude">latitude:</string>
+    <string name="location_service_save_location">Save current location</string>
 </resources>
