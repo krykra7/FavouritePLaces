@@ -7,8 +7,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import pl.krystiankrawczyk.favouriteplaces.locationservice.FavouritePlaceData;
 
@@ -19,21 +20,19 @@ import pl.krystiankrawczyk.favouriteplaces.locationservice.FavouritePlaceData;
 public class UserData {
 
     private static final String PREFERENCES_NAME = "PREFERENCES";
-    private static final String PLACES_COUNT = "PLACES_COUNT";
     private static final String FAVOURITE_PLACES_KEY = "PLACES";
     private static final String DEFAULT_EMPTY_STRING = "";
-    private static final int DEFAULT_INT_VALUE = 0;
 
     private static UserData userData;
     private final SharedPreferences sharedPreferences;
     private final SharedPreferences.Editor editor;
-    private Map<Integer, FavouritePlaceData> testFavouritePlacesMap;
+    private List<FavouritePlaceData> favouritePlacesDataList;
 
 
     private UserData(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        testFavouritePlacesMap = getFavouritePlacesMap();
+        favouritePlacesDataList = getFavouritePlacesMap();
     }
 
     public static UserData getInstance(Context context) {
@@ -43,39 +42,37 @@ public class UserData {
         return userData;
     }
 
-    public void saveFavouritePlacesCount() {
-        editor.putInt(PLACES_COUNT, testFavouritePlacesMap.size()).apply();
+    public void addNewFavouritePlace(FavouritePlaceData value) {
+        favouritePlacesDataList.add(value);
     }
 
-    public Integer getFavouritePlacesCount() {
-        return sharedPreferences.getInt(PLACES_COUNT, DEFAULT_INT_VALUE);
+    public void removeFavouritePlace(int position) {
+        favouritePlacesDataList.remove(position);
     }
 
-    public void addNewFavouritePlace(Integer key, FavouritePlaceData value) {
-        testFavouritePlacesMap.put(key, value);
-        saveFavouritePlacesCount();
+    public void swapFavouritePlaceElements(int position, int targetPosition) {
+        Collections.swap(favouritePlacesDataList, position, targetPosition);
     }
 
-    public Map<Integer, FavouritePlaceData> getFavouritePlaces() {
-        return this.testFavouritePlacesMap;
+    public List<FavouritePlaceData> getFavouritePlaces() {
+        return this.favouritePlacesDataList;
     }
 
     public void saveFavouritePlacesMap() {
         Gson gson = new Gson();
-        String jsonPlacesMapString = gson.toJson(testFavouritePlacesMap);
+        String jsonPlacesMapString = gson.toJson(favouritePlacesDataList);
         editor.putString(FAVOURITE_PLACES_KEY, jsonPlacesMapString).apply();
     }
 
-    private Map<Integer, FavouritePlaceData> getFavouritePlacesMap() {
+    private List<FavouritePlaceData> getFavouritePlacesMap() {
         String jsonPlacesMapString = sharedPreferences.getString(FAVOURITE_PLACES_KEY, DEFAULT_EMPTY_STRING);
         if (jsonPlacesMapString.isEmpty()) {
-            return new HashMap<>();
+            return new ArrayList<>();
         } else {
             Gson gson = new Gson();
-            Type customType = new TypeToken<HashMap<Integer, FavouritePlaceData>>() {
+            Type customType = new TypeToken<ArrayList<FavouritePlaceData>>() {
             }.getType();
             return gson.fromJson(jsonPlacesMapString, customType);
         }
     }
-
 }

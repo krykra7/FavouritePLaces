@@ -1,11 +1,12 @@
 package pl.krystiankrawczyk.favouriteplaces.places.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Map;
+import java.util.List;
 
 import pl.krystiankrawczyk.favouriteplaces.R;
 import pl.krystiankrawczyk.favouriteplaces.locationservice.FavouritePlaceData;
@@ -17,10 +18,12 @@ import pl.krystiankrawczyk.favouriteplaces.places.viewholder.FavouritePlaceViewH
 
 public class FavouritePlacesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Map<Integer, FavouritePlaceData> favouritePlacesDataMap;
+    private List<FavouritePlaceData> favouritePlacesDataList;
+    private Context context;
 
-    public FavouritePlacesListAdapter(Map<Integer, FavouritePlaceData> favouritePlacesData) {
-        this.favouritePlacesDataMap = favouritePlacesData;
+    public FavouritePlacesListAdapter(List<FavouritePlaceData> favouritePlacesData, Context context) {
+        this.favouritePlacesDataList = favouritePlacesData;
+        this.context = context;
     }
 
     @Override
@@ -32,7 +35,9 @@ public class FavouritePlacesListAdapter extends RecyclerView.Adapter<RecyclerVie
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof FavouritePlaceViewHolder) {
-            FavouritePlaceData placeData = favouritePlacesDataMap.get(position);
+            FavouritePlaceData placeData = favouritePlacesDataList.get(position);
+            ((FavouritePlaceViewHolder) holder).setContext(context);
+            ((FavouritePlaceViewHolder) holder).setPlaceData(placeData);
             ((FavouritePlaceViewHolder) holder).getItemIdTV().setText(String.valueOf(position));
             ((FavouritePlaceViewHolder) holder).getItemLatitudeValueTV().
                     setText(String.valueOf(placeData.getLatitude()));
@@ -43,6 +48,6 @@ public class FavouritePlacesListAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public int getItemCount() {
-        return favouritePlacesDataMap.size();
+        return favouritePlacesDataList.size();
     }
 }

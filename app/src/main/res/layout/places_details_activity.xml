@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/details_activity_longitude_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/big_text_size"
+        />
+
+    <TextView
+        android:id="@+id/details_activity_latitude_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/big_text_size"
+        />
+
+    <TextView
+        android:id="@+id/details_activity_city_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/big_text_size"
+        />
+
+    <TextView
+        android:id="@+id/details_activity_country_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/big_text_size"
+        />
+
+    <TextView
+        android:id="@+id/details_activity_postal_code_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/big_text_size"
+        />
+
+    <EditText
+        android:id="@+id/details_activity_place_description_et"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:lines="3"
+        android:textSize="@dimen/big_text_size"
+        android:background="@drawable/common_google_signin_btn_text_light_normal_background"
+        style="@style/Widget.AppCompat.EditText"
+        />
+
+</LinearLayout>

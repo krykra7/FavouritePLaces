@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +35,6 @@ import pl.krystiankrawczyk.favouriteplaces.preferences.UserData;
 public class LocationService extends Activity implements LocationListener {
 
     private static final int GEOCODER_MAX_NUMBER_OF_RESULTS = 1;
-    private static final int DEFAULT_FIRST_PLACE_KEY = 0;
 
     @BindView(R.id.location_service_location_fetching_info_tv)
     TextView fetchingInfoTV;
@@ -52,6 +52,8 @@ public class LocationService extends Activity implements LocationListener {
     ProgressBar serviceProgressBarPB;
     @BindView(R.id.location_service_save_current_location_btn)
     Button saveCurrentLocationBtn;
+    @BindView(R.id.location_service_place_description_et)
+    EditText locationDescriptionET;
 
     private FavouritePlaceData currentPositionDetails = new FavouritePlaceData();
     private String locationProvider;
@@ -59,13 +61,8 @@ public class LocationService extends Activity implements LocationListener {
 
     @OnClick(R.id.location_service_save_current_location_btn)
     public void onSaveLocationClicked() {
-        int favouritePlacesCount = UserData.getInstance(getBaseContext()).getFavouritePlacesCount();
-        if (isPlacesCollectionEmpty()) {
-            UserData.getInstance(getBaseContext()).addNewFavouritePlace(DEFAULT_FIRST_PLACE_KEY,
-                    currentPositionDetails);
-        } else {
-            UserData.getInstance(getBaseContext()).addNewFavouritePlace(favouritePlacesCount, currentPositionDetails);
-        }
+        currentPositionDetails.setPlaceDescription(locationDescriptionET.getText().toString());
+        UserData.getInstance(getBaseContext()).addNewFavouritePlace(currentPositionDetails);
     }
 
     @Override
@@ -192,9 +189,5 @@ public class LocationService extends Activity implements LocationListener {
         locationPostalCodeTV.setVisibility(View.VISIBLE);
         saveCurrentLocationBtn.setVisibility(View.VISIBLE);
         serviceProgressBarPB.setVisibility(View.GONE);
-    }
-
-    private boolean isPlacesCollectionEmpty() {
-        return UserData.getInstance(getBaseContext()).getFavouritePlaces().isEmpty();
     }
 }

@@ -6,4 +6,5 @@
     <string name="place_list_item_longitude">longitude:</string>
     <string name="place_list_item_latitude">latitude:</string>
     <string name="location_service_save_location">Save current location</string>
+    <string name="location_service_place_description_hint">place description</string>
 </resources>

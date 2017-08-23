@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".places.activities.PlacesActivity"/>
+        <activity android:name=".places.fragments.ShowDetailsActivity"/>
         <activity android:name=".locationservice.LocationService"/>
         <activity android:name=".MainActivity">
             <intent-filter>
