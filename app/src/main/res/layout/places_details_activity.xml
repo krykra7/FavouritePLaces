@@ -97,4 +97,12 @@
         android:layout_marginBottom="@dimen/margin_medium"
         android:textSize="@dimen/big_text_size"/>
 
+    <Button
+        android:id="@+id/details_activity_open_in_maps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_big"
+        android:layout_marginStart="@dimen/margin_big"
+        android:text="@string/details_activity_text_in_maps"/>
+
 </LinearLayout>

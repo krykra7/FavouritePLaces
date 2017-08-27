@@ -66,6 +66,7 @@ public class LocationService extends Activity implements LocationListener {
     public void onSaveLocationClicked() {
         currentPositionDetails.setPlaceDescription(locationDescriptionET.getText().toString());
         UserData.getInstance(getBaseContext()).addNewFavouritePlace(currentPositionDetails);
+        Toast.makeText(this, R.string.location_service_saved, Toast.LENGTH_SHORT).show();
     }
 
     @Override

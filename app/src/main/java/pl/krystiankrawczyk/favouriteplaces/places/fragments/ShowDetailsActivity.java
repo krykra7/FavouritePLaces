@@ -1,6 +1,8 @@
 package pl.krystiankrawczyk.favouriteplaces.places.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
@@ -9,6 +11,7 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.krystiankrawczyk.favouriteplaces.R;
 import pl.krystiankrawczyk.favouriteplaces.locationservice.FavouritePlaceData;
 
@@ -33,6 +36,18 @@ public class ShowDetailsActivity extends Activity {
     @BindView(R.id.details_activity_street_tv)
     TextView detailsStreetTV;
 
+    private FavouritePlaceData data;
+
+    @OnClick(R.id.details_activity_open_in_maps)
+    public void onOpenInMapsClicked() {
+        String uri = String.format("geo:%f,%f", data.getLatitude(), data.getLongitude());
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(uri));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +57,7 @@ public class ShowDetailsActivity extends Activity {
     }
 
     private void setupView(FavouritePlaceData data) {
+        this.data = data;
         detailsCityNameTV.setText(data.getCity());
         detailsCountryNameTV.setText(data.getCountry());
         detailsLatitudeTV.setText(String.valueOf(data.getLatitude()));

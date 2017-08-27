@@ -22,4 +22,6 @@
     <string name="location_service_geocoder">Could not connect to geocoder</string>
     <string name="location_service_provider_disabled">Disabled provider</string>
     <string name="location_service_provider_enabled">Enabled new provider</string>
+    <string name="details_activity_text_in_maps">Open in maps</string>
+    <string name="location_service_saved">Location saved!</string>
 </resources>
