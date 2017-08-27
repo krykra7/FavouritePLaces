@@ -12,6 +12,7 @@ public class FavouritePlaceData {
     private String Country;
     private String PostalCode;
     private String placeDescription;
+    private String street;
 
     public double getLatitude() {
         return Latitude;
@@ -59,5 +60,13 @@ public class FavouritePlaceData {
 
     public void setPlaceDescription(String placeDescription) {
         this.placeDescription = placeDescription;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 }

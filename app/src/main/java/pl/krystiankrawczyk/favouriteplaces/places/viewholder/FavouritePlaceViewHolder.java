@@ -23,9 +23,9 @@ public class FavouritePlaceViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.favourite_place_item_id_tv)
     TextView itemIdTV;
-    @BindView(R.id.place_list_item_latitude_value_tv)
+    @BindView(R.id.place_list_item_street_value_tv)
     TextView itemLatitudeValueTV;
-    @BindView(R.id.place_list_item_longitude_value_tv)
+    @BindView(R.id.place_list_item_city_value_tv)
     TextView itemLongitudeValueTV;
 
     private FavouritePlaceData placeData;
@@ -47,11 +47,11 @@ public class FavouritePlaceViewHolder extends RecyclerView.ViewHolder {
         return this.itemIdTV;
     }
 
-    public TextView getItemLatitudeValueTV() {
+    public TextView getItemStreetValueTV() {
         return this.itemLatitudeValueTV;
     }
 
-    public TextView getItemLongitudeValueTV() {
+    public TextView getItemCityValueTV() {
         return this.itemLongitudeValueTV;
     }
 

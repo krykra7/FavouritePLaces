@@ -5,76 +5,117 @@
               android:orientation="vertical"
               android:padding="@dimen/default_layout_padding">
 
-    <TextView
-        android:id="@+id/location_service_location_fetching_info_tv"
+    <LinearLayout
+        android:id="@+id/location_service_properties_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/location_service_fragment_fetching_location"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/location_service_longitude_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="invisible"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/location_service_text_longitude"
+            android:textColor="@android:color/darker_gray"/>
 
-    <TextView
-        android:id="@+id/location_service_latitude_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/location_service_longitude_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            />
 
-    <TextView
-        android:id="@+id/location_service_city_name_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="invisible"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/location_service_text_latitude"
+            android:textColor="@android:color/darker_gray"/>
 
-    <TextView
-        android:id="@+id/location_service_country_name_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/location_service_latitude_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"/>
 
-    <TextView
-        android:id="@+id/location_service_postal_code_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:visibility="invisible"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/location_service_text_city"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/location_service_city_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/location_service_text_country"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/location_service_country_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/location_service_text_postal"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/location_service_postal_code_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/location_service_text_street"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/location_service_street_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"/>
+
+        <EditText
+            android:id="@+id/location_service_place_description_et"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_dropdown_light_frame"
+            android:gravity="top"
+            android:hint="@string/location_service_place_description_hint"
+            android:lines="3"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/big_text_size"
+            android:layout_marginBottom="@dimen/margin_medium"/>
+
+        <Button
+            android:id="@+id/location_service_save_current_location_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location_service_save_location"/>
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/location_service_progress_bar_pb"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:visibility="gone"/>
-
-    <EditText
-        android:id="@+id/location_service_place_description_et"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:hint="@string/location_service_place_description_hint"
-        android:lines="3"
-        android:textColor="@android:color/holo_purple"
-        android:textSize="@dimen/big_text_size"
-        />
-
-    <Button
-        android:id="@+id/location_service_save_current_location_btn"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="@string/location_service_save_location"
-        android:visibility="invisible"/>
 
 </LinearLayout>

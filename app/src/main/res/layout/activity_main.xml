@@ -9,11 +9,11 @@
     android:padding="@dimen/default_layout_padding"
     tools:context="pl.krystiankrawczyk.favouriteplaces.MainActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Hello World!"/>
+        android:background="@drawable/ic_satellite_black_48dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/main_activity_save_actual_location"/>
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:text="@string/main_activity_actual_location"/>
 
         <Button
             android:id="@+id/main_activity_view_saved_places_btn"

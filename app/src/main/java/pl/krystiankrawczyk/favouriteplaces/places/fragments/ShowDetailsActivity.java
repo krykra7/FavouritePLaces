@@ -3,7 +3,6 @@ package pl.krystiankrawczyk.favouriteplaces.places.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -12,7 +11,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.krystiankrawczyk.favouriteplaces.R;
 import pl.krystiankrawczyk.favouriteplaces.locationservice.FavouritePlaceData;
-import pl.krystiankrawczyk.favouriteplaces.preferences.UserData;
 
 /**
  * Created by Krystian Krawczyk on 23.08.2017.
@@ -31,7 +29,9 @@ public class ShowDetailsActivity extends Activity {
     @BindView(R.id.details_activity_postal_code_tv)
     TextView detailsPostalCodeTV;
     @BindView(R.id.details_activity_place_description_et)
-    EditText detailsDescriptionET;
+    TextView detailsDescriptionTV;
+    @BindView(R.id.details_activity_street_tv)
+    TextView detailsStreetTV;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +47,8 @@ public class ShowDetailsActivity extends Activity {
         detailsLatitudeTV.setText(String.valueOf(data.getLatitude()));
         detailsLongitudeTV.setText(String.valueOf(data.getLongitude()));
         detailsPostalCodeTV.setText(data.getPostalCode());
-        detailsDescriptionET.setText(data.getPlaceDescription());
+        detailsDescriptionTV.setText(data.getPlaceDescription());
+        detailsStreetTV.setText(data.getStreet());
     }
 
     private FavouritePlaceData getFavouritePlaceDataFromBundle(Bundle bundle) {

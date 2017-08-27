@@ -39,10 +39,8 @@ public class FavouritePlacesListAdapter extends RecyclerView.Adapter<RecyclerVie
             ((FavouritePlaceViewHolder) holder).setContext(context);
             ((FavouritePlaceViewHolder) holder).setPlaceData(placeData);
             ((FavouritePlaceViewHolder) holder).getItemIdTV().setText(String.valueOf(position));
-            ((FavouritePlaceViewHolder) holder).getItemLatitudeValueTV().
-                    setText(String.valueOf(placeData.getLatitude()));
-            ((FavouritePlaceViewHolder) holder).getItemLongitudeValueTV().
-                    setText(String.valueOf(placeData.getLongitude()));
+            ((FavouritePlaceViewHolder) holder).getItemCityValueTV().setText(placeData.getCity());
+            ((FavouritePlaceViewHolder) holder).getItemStreetValueTV().setText(placeData.getStreet());
         }
     }
 

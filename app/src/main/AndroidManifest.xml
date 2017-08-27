@@ -13,9 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".places.activities.PlacesActivity"/>
-        <activity android:name=".places.fragments.ShowDetailsActivity"/>
-        <activity android:name=".locationservice.LocationService"/>
+        <activity
+            android:name=".places.activities.PlacesActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".places.fragments.ShowDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".locationservice.LocationService"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

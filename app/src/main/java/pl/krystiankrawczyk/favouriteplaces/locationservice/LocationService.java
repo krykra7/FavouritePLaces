@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,8 +37,8 @@ public class LocationService extends Activity implements LocationListener {
 
     private static final int GEOCODER_MAX_NUMBER_OF_RESULTS = 1;
 
-    @BindView(R.id.location_service_location_fetching_info_tv)
-    TextView fetchingInfoTV;
+    @BindView(R.id.location_service_properties_layout)
+    LinearLayout locationPropertiesLL;
     @BindView(R.id.location_service_longitude_tv)
     TextView locationLongitudeTV;
     @BindView(R.id.location_service_latitude_tv)
@@ -54,6 +55,8 @@ public class LocationService extends Activity implements LocationListener {
     Button saveCurrentLocationBtn;
     @BindView(R.id.location_service_place_description_et)
     EditText locationDescriptionET;
+    @BindView(R.id.location_service_street_tv)
+    TextView locationStreetTv;
 
     private FavouritePlaceData currentPositionDetails = new FavouritePlaceData();
     private String locationProvider;
@@ -97,12 +100,14 @@ public class LocationService extends Activity implements LocationListener {
 
     @Override
     public void onProviderEnabled(String provider) {
-        Toast.makeText(this, "Enabled new provider " + provider, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.location_service_provider_enabled) + provider
+                , Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        Toast.makeText(this, "Disabled provider " + provider, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.location_service_provider_disabled) + provider,
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -117,7 +122,6 @@ public class LocationService extends Activity implements LocationListener {
         Location location = locationManager.getLastKnownLocation(locationProvider);
 
         if (location != null) {
-            System.out.println("Provider " + locationProvider + "has been selected");
             onLocationChanged(location);
         } else {
             serviceProgressBarPB.setVisibility(View.VISIBLE);
@@ -130,7 +134,8 @@ public class LocationService extends Activity implements LocationListener {
         currentPositionDetails.setCity(getLocality());
         currentPositionDetails.setCountry(getCountryName());
         currentPositionDetails.setPostalCode(getPostalCode());
-        setupCorrespondingEditTexts();
+        currentPositionDetails.setStreet(getStreet());
+        setupFetchedInformations();
     }
 
     @Nullable
@@ -141,18 +146,28 @@ public class LocationService extends Activity implements LocationListener {
             return geocoder.getFromLocation(currentPositionDetails.getLatitude(), currentPositionDetails.getLongitude(),
                     GEOCODER_MAX_NUMBER_OF_RESULTS);
         } catch (IOException exception) {
-            Log.e(Geocoder.class.getName(), "Could not connect to geocoder", exception);
+            Log.e(Geocoder.class.getName(), getString(R.string.location_service_geocoder), exception);
         }
         return null;
     }
 
-    public String getLocality() {
+    private String getStreet() {
+        List<Address> addressList = getGeocoderAddress();
+
+        if (addressList != null && addressList.size() > 0) {
+            return addressList.get(0).getThoroughfare();
+        } else {
+            return getString(R.string.location_service_resolve_street);
+        }
+    }
+
+    private String getLocality() {
         List<Address> addressList = getGeocoderAddress();
 
         if (addressList != null && addressList.size() > 0) {
             return addressList.get(0).getLocality();
         } else {
-            return "Can't resolve city";
+            return getString(R.string.location_service_resolve_city);
         }
     }
 
@@ -162,7 +177,7 @@ public class LocationService extends Activity implements LocationListener {
         if (addressList != null && addressList.size() > 0) {
             return addressList.get(0).getPostalCode();
         } else {
-            return "Can't resolve postal code";
+            return getString(R.string.location_service_resolve_postal);
         }
     }
 
@@ -172,22 +187,18 @@ public class LocationService extends Activity implements LocationListener {
         if (addressList != null && addressList.size() > 0) {
             return addressList.get(0).getCountryName();
         } else {
-            return "Can't resolve country name";
+            return getString(R.string.location_service_resolve_country);
         }
     }
 
-    private void setupCorrespondingEditTexts() {
+    private void setupFetchedInformations() {
         locationLatitudeTV.setText(String.valueOf(currentPositionDetails.getLatitude()));
         locationLongitudeTV.setText(String.valueOf(currentPositionDetails.getLongitude()));
         locationCityNameTV.setText(currentPositionDetails.getCity());
         locationCountryNameTV.setText(currentPositionDetails.getCountry());
         locationPostalCodeTV.setText(currentPositionDetails.getPostalCode());
-        locationLatitudeTV.setVisibility(View.VISIBLE);
-        locationLongitudeTV.setVisibility(View.VISIBLE);
-        locationCityNameTV.setVisibility(View.VISIBLE);
-        locationCountryNameTV.setVisibility(View.VISIBLE);
-        locationPostalCodeTV.setVisibility(View.VISIBLE);
-        saveCurrentLocationBtn.setVisibility(View.VISIBLE);
+        locationStreetTv.setText(currentPositionDetails.getStreet());
+        locationPropertiesLL.setVisibility(View.VISIBLE);
         serviceProgressBarPB.setVisibility(View.GONE);
     }
 }

@@ -1,10 +1,25 @@
 <resources>
     <string name="app_name">Favourite Places</string>
     <string name="location_service_fragment_fetching_location">Please wait, application fetching current location</string>
-    <string name="main_activity_save_actual_location">Save actual location</string>
+    <string name="main_activity_actual_location">Actual location</string>
     <string name="main_activity_view_saved_places">View saved places</string>
     <string name="place_list_item_longitude">longitude:</string>
     <string name="place_list_item_latitude">latitude:</string>
     <string name="location_service_save_location">Save current location</string>
     <string name="location_service_place_description_hint">place description</string>
+    <string name="location_service_text_longitude">Longitude:</string>
+    <string name="location_service_text_latitude">Latitude:</string>
+    <string name="location_service_text_city">City name:</string>
+    <string name="location_service_text_country">Country name:</string>
+    <string name="location_service_text_postal">Postal code:</string>
+    <string name="deteails_activity_text_description">Description:</string>
+    <string name="location_service_text_street">Street:</string>
+    <string name="places_activity_message_add_one">First add at least one place to your list</string>
+    <string name="location_service_resolve_country">Can\'t resolve country name</string>
+    <string name="location_service_resolve_postal">Can\'t resolve postal code</string>
+    <string name="location_service_resolve_city">Can\'t resolve city</string>
+    <string name="location_service_resolve_street">Can\'t resolve street</string>
+    <string name="location_service_geocoder">Could not connect to geocoder</string>
+    <string name="location_service_provider_disabled">Disabled provider</string>
+    <string name="location_service_provider_enabled">Enabled new provider</string>
 </resources>

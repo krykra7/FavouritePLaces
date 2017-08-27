@@ -34,7 +34,7 @@ public class PlacesActivity extends Activity {
 
     private void setupAdapter() {
         if (isPlacesDataEmpty()) {
-            Toast.makeText(this, "First add at least one place to your list", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.places_activity_message_add_one, Toast.LENGTH_SHORT).show();
         } else {
             placesListRV.setLayoutManager(new LinearLayoutManager(this));
             placesListRV.setAdapter(new FavouritePlacesListAdapter(UserData.getInstance(getBaseContext())

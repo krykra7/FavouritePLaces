@@ -28,7 +28,6 @@ public class UserData {
     private final SharedPreferences.Editor editor;
     private List<FavouritePlaceData> favouritePlacesDataList;
 
-
     private UserData(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
